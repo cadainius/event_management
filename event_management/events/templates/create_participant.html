@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Pridėti dalyvius į šventę: {{ event.name }}</h2>
+    <form method="post" action="{% url 'create_participant' event.id %}">
+        {% csrf_token %}
+        <label for="user">Pasirinkite dalyvį:</label>
+        <select id="user" name="user">
+            <option value="" disabled selected>Pasirinkite dalyvį</option>
+            {% for user in users %}
+                <option value="{{ user.id }}">{{ user.username }}</option>
+            {% endfor %}
+        </select><br>
+        <button type="submit">Pridėti dalyvį</button>
+    </form>
+    <a href="{% url 'event_detail' event.id %}">Atgal į šventės informacijos puslapį</a>
+{% endblock %}

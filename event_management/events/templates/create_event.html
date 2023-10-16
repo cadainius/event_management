@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Sukurti naują šventę</h2>
+    <form method="post" action="{% url 'create_event' %}">
+        {% csrf_token %}
+        <label for="name">Pavadinimas:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="date_and_time">Data ir laikas:</label>
+        <input type="datetime-local" id="date_and_time" name="date_and_time" required><br>
+
+        <label for="location">Vieta:</label>
+        <input type="text" id="location" name="location" required><br>
+
+        <label for="description">Aprašymas:</label>
+        <textarea id="description" name="description" required></textarea><br>
+
+        <label for="is_public">Viešas:</label>
+        <input type="checkbox" id="is_public" name="is_public" checked><br>
+
+        <button type="submit">Sukurti šventę</button>
+    </form>
+    <a href="{% url 'event_list' %}">Atgal į šventės sąrašą</a>
+{% endblock %}

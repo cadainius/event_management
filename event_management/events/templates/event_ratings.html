@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Įvertinimai šventei: {{ event.name }}</h2>
+    <ul>
+        {% for rating in ratings %}
+            <li>{{ rating.rating }}/5 - {{ rating.comment }} by {{ rating.author.username }}</li>
+        {% empty %}
+            <li>Šventė dar neturi įvertinimų.</li>
+        {% endfor %}
+    </ul>
+    
+    {% if user.is_authenticated %}
+    <h3>Įrašyti įvertinimą:</h3>
+    <form method="post" action="{% url 'event_detail' event.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Įrašyti įvertinimą</button>
+    </form>
+    {% else %}
+    <p>Prisijunkite, kad galėtumėte įrašyti įvertinimą.</p>
+    {% endif %}
+    
+    <a href="{% url 'event_detail' event.id %}">Atgal į šventės informacijos puslapį</a>
+{% endblock %}
