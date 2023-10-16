@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Šventės Valdymas</title>
+    <title>Renginiai</title>
 </head>
 <body>
     <header>
-        <h1>Šventės Valdymas</h1>
+        <h1>Renginių valdymas</h1>
         <nav>
             <ul>
-                <li><a href="{% url 'event_list' %}">Šventės sąrašas</a></li>
+                <li><a href="{% url 'event_list' %}">Renginių sąrašas</a></li>
                 {% if user.is_authenticated %}
-                <li><a href="{% url 'logout' %}">Atsijungti</a></li>
+                <li><a href="">Atsijungti</a></li>
                 {% else %}
-                <li><a href="{% url 'login' %}">Prisijungti</a></li>
-                <li><a href="{% url 'register' %}">Registruotis</a></li>
+                <li><a href="">Prisijungti</a></li>
+                <li><a href="">Registruotis</a></li>
                 {% endif %}
             </ul>
         </nav>

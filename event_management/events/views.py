@@ -6,7 +6,7 @@ from .forms import EventRatingForm, EventForm, EventParticipantForm
 
 def event_list(request):
     events = Event.objects.all()
-    return render(request, 'events/event_list.html', {'events': events})
+    return render(request, 'event_list.html', {'events': events})
 
 @login_required
 def create_event(request):
@@ -24,7 +24,7 @@ def create_event(request):
 
         return redirect('event_list')
 
-    return render(request, 'events/create_event.html')
+    return render(request, 'create_event.html')
 
 @login_required
 def edit_event(request, event_id):
@@ -40,7 +40,7 @@ def edit_event(request, event_id):
 
         return redirect('event_list')
 
-    return render(request, 'events/edit_event.html', {'event': event})
+    return render(request, 'edit_event.html', {'event': event})
 
 @login_required
 def delete_event(request, event_id):
@@ -50,7 +50,7 @@ def delete_event(request, event_id):
         event.delete()
         return redirect('event_list')
     
-    return render(request, 'events/delete_event.html', {'event': event})
+    return render(request, 'delete_event.html', {'event': event})
 
 def event_detail(request, event_id):
     event = get_object_or_404(Event, pk=event_id)
@@ -69,7 +69,7 @@ def event_detail(request, event_id):
     else:
         form = EventRatingForm()
     
-    return render(request, 'events/event_detail.html', {'event': event, 'ratings': ratings, 'form': form})
+    return render(request, 'event_detail.html', {'event': event, 'ratings': ratings, 'form': form})
 
 def participant_list(request, event_id):
     event = get_object_or_404(Event, pk=event_id)
