@@ -12,8 +12,8 @@ class EventRatingForm(forms.ModelForm):
 
     def clean_rating(self):
         rating = self.cleaned_data['rating']
-        if rating < 1 or rating > 5:
-            raise ValidationError("Reitingas turi būti nuo 1 iki 5.")
+        if rating < 1 or rating > 10:
+            raise ValidationError("The rating must be between 1 and 10.")
         return rating
 
 class EventForm(forms.ModelForm):

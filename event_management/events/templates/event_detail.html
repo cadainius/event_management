@@ -2,27 +2,27 @@
 
 {% block content %}
     <h2>{{ event.name }}</h2>
-    <p>Data ir laikas: {{ event.date_and_time }}</p>
-    <p>Vieta: {{ event.location }}</p>
-    <p>Šventės kūrėjas: {{ event.creator }}</p>
-    <p>Aprašymas: {{ event.description }}</p>
-    <h3>Įvykiai:</h3>
+    <p>Date and time: {{ event.date_and_time }}</p>
+    <p>Location: {{ event.location }}</p>
+    <p>Creator: {{ event.creator }}</p>
+    <p>Description: {{ event.description }}</p>
+    <h3></h3>
     <ul>
         {% for event in events %}
         <li>{{ event.name }}</li>
         {% endfor %}
     </ul>
-    <h3>Įvertinimai:</h3>
+    <h3>Ratings:</h3>
     <ul>
         {% for rating in ratings %}
-        <li>{{ rating.rating }}/5 - {{ rating.comment }} by {{ rating.author }}</li>
+        <li>{{ rating.rating }}/10 - {{ rating.comment }} by {{ rating.author }}</li>
         {% endfor %}
     </ul>
     {% if user.is_authenticated %}
     <form method="post" action="{% url 'event_detail' event.id %}">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Įrašyti įvertinimą</button>
+        <button type="submit">Submit</button>
     </form>
     {% endif %}
 {% endblock %}

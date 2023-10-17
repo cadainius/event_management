@@ -4,7 +4,7 @@
     <h2>Įvertinimai šventei: {{ event.name }}</h2>
     <ul>
         {% for rating in ratings %}
-            <li>{{ rating.rating }}/5 - {{ rating.comment }} by {{ rating.author.username }}</li>
+            <li>{{ rating.rating }}/10 - {{ rating.comment }} by {{ rating.author.username }}</li>
         {% empty %}
             <li>Šventė dar neturi įvertinimų.</li>
         {% endfor %}
