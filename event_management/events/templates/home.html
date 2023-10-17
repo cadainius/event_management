@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pradinis puslapis</title>
+</head>
+<body>
+    <h1>Sveiki atvykę į mūsų svetainę!</h1>
+    
+    <!-- Čia galite pridėti bet kokį turinį, kurį norite atvaizduoti pagrindiniame puslapyje -->
+    
+    <p>Naršykite mūsų svetainėje ir atraskite daug įdomių dalykų!</p>
+
+    <!-- Jei jums reikia pridėti nuorodas į kitus puslapius, galite tai padaryti taip: -->
+    <a href="{% url 'event_list' %}">Šventės sąrašas</a>
+    <a href="{% url 'create_event' %}">Sukurti naują šventę</a>
+
+    <!-- Jei norite parodyti papildomą turinį pagal prisijungusį vartotoją: -->
+    {% if user.is_authenticated %}
+        <p>Sveiki, {{ user.username }}!</p>
+        <a href="{% url 'logout' %}">Atsijungti</a>
+    {% else %}
+        <a href="{% url 'login' %}">Prisijungti</a>
+        <a href="{% url 'register' %}">Registruotis</a>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Prisijungti</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Prisijungti</button>
+  </form>
+  <p>Dar neturite paskyros? <a href="{% url 'register' %}">Registruotis čia</a>.</p>
+</div>
+{% endblock %}

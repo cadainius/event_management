@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from .models import Event, EventParticipant, EventRating
 from .forms import EventRatingForm, EventForm, EventParticipantForm
+from .forms import CustomUserCreationForm
+from .forms import CustomAuthenticationForm
 
 def event_list(request):
     events = Event.objects.all()
@@ -20,6 +23,7 @@ def create_event(request):
 
         event = Event(name=name, date_and_time=date_and_time, location=location,
                       description=description, is_public=is_public, creator=creator)
+        
         event.save()
 
         return redirect('event_list')
@@ -117,5 +121,38 @@ def event_ratings(request, event_id):
         form = EventRatingForm()
 
     return render(request, 'event_ratings.html', {'event': event, 'ratings': ratings, 'form': form})
+
+def register(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')  
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'registration/registration_form.html', {'form': form})
+
+def user_login(request):
+    if request.method == 'POST':
+        form = CustomAuthenticationForm(request, request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('home') 
+    else:
+        form = CustomAuthenticationForm()
+    return render(request, 'registration/login.html', {'form': form})
+
+def user_logout(request):
+    logout(request)
+    return redirect('home')
+
+
+def home(request):
+    return render(request, 'home.html')
+
 
 
