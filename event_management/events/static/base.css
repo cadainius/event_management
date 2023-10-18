@@ -4,15 +4,15 @@ h1, h2 {
     }
 
 h1, h2 {
-    border-bottom: 2px solid #000000; 
-    box-shadow: 0 3px 5px #00000033;
+    border-bottom: 2px solid #ffffff; 
+    box-shadow: 0 3px 5px #ffffff;
     padding: 1rem;
     padding: 0.25rem 0.5rem;
     border-bottom: 1px solid #ccaa77;
     }
 
 body {
-    background-image: url('dark-wall-with-spot-lights-background_52683-42962.jpg');
+    background-color: rgb(63, 52, 39);
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
@@ -27,8 +27,8 @@ li {
 }
 
 footer {
-    color: rgb(107, 136, 2);
+    color: rgb(185, 215, 70);
 }
 a {
-    color: rgb(145, 143, 9);
+    color: rgb(185, 215, 70);
 }

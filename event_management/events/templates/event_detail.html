@@ -22,7 +22,7 @@
     <form method="post" action="{% url 'event_detail' event.id %}">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Submit</button>
+        <button type="comment">Submit</button>
     </form>
     {% endif %}
 {% endblock %}

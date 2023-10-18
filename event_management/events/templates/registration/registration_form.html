@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>Registracija</h2>
+  <h2>Registration</h2>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Registruotis</button>
+    <button type="submit">Registration</button>
   </form>
-  <p>Jau turite paskyrą? <a href="{% url 'login' %}">Prisijungti čia</a>.</p>
+  <p>Already have an account?? <a href="{% url 'login' %}">Login here</a>.</p>
 </div>
 {% endblock %}
