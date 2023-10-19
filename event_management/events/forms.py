@@ -19,7 +19,7 @@ class EventRatingForm(forms.ModelForm):
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = ['name', 'date_and_time', 'location', 'description', 'is_public']
+        fields = ['name', 'date_and_time', 'location', 'description', 'is_public', 'image']
 
 class EventParticipantForm(forms.Form):
     user = forms.ModelChoiceField(queryset=User.objects.all(), label='Pasirinkite dalyvį')

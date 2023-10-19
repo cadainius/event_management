@@ -1,7 +1,9 @@
 {% extends "base.html" %}
-
 {% block content %}
     <h2>{{ event.name }}</h2>
+    {% if event.image %}
+    <img  src="{{ event.image.url }}" alt="{{ event.name }}" style="max-width: 250px; max-height: 250px;">
+        {% endif %}
     <p>Date and time: {{ event.date_and_time }}</p>
     <p>Location: {{ event.location }}</p>
     <p>Creator: {{ event.creator }}</p>
@@ -10,7 +12,7 @@
     <p>This event is open to the public.</p>
         {% else %}
     <p>This event is private.</p>
-        {% endif %}
+    {% endif %}
     <h3></h3>
     <ul>
         {% for event in events %}

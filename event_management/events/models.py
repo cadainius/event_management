@@ -8,6 +8,7 @@ class Event(models.Model):
     description = models.TextField()
     is_public = models.BooleanField(default=True)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='event_images/', null=True, blank=True)
 
 class EventParticipant(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
