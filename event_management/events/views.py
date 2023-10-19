@@ -14,21 +14,19 @@ def event_list(request):
 @login_required
 def create_event(request):
     if request.method == 'POST':
-        name = request.POST.get('name')
-        date_and_time = request.POST.get('date_and_time')
-        location = request.POST.get('location')
-        description = request.POST.get('description')
-        is_public = request.POST.get('is_public')
-        creator = request.user
+        form = EventForm(request.POST)
 
-        event = Event(name=name, date_and_time=date_and_time, location=location,
-                      description=description, is_public=is_public, creator=creator)
-        
-        event.save()
+        if form.is_valid():
+            event = form.save(commit=False)
+            event.creator = request.user  
+            event.save()
 
-        return redirect('event_list')
+            return redirect('event_list')
 
-    return render(request, 'create_event.html')
+    else:
+        form = EventForm()
+
+    return render(request, 'create_event.html', {'form': form})
 
 @login_required
 def edit_event(request, event_id):

@@ -21,14 +21,6 @@ class EventForm(forms.ModelForm):
         model = Event
         fields = ['name', 'date_and_time', 'location', 'description', 'is_public']
 
-    is_public = forms.BooleanField(required=False, initial=True)
-
-    def clean_is_public(self):
-        is_public = self.cleaned_data['is_public']
-        if is_public is None:
-            return False
-        return is_public
-
 class EventParticipantForm(forms.Form):
     user = forms.ModelChoiceField(queryset=User.objects.all(), label='Pasirinkite dalyvį')
 
