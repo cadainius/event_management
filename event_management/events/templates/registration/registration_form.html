@@ -11,6 +11,9 @@ span{
 label{
   display:block;
 }
+a{
+  color:#b9d746;
+}
 </style>
 <body class="bBox">
   <h1>Registration</h1>
@@ -19,7 +22,7 @@ label{
     {{ form.as_p }}
     <button type="submit">Registration</button>
   </form>
-  <p>Already have an account?? <a href="{% url 'login' %}">Login here</a>.</p>
+  <p>Already have an account? <a href="{% url 'login' %}">Login here</a>.</p>
 </div>
 </body>
 {% endblock %}

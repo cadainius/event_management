@@ -20,26 +20,26 @@
 
 </style>
 <body class="bBox">
-   <h1>Įvertinimai šventei: {{ event.name }}</h1>
+   <h1>Ratings: {{ event.name }}</h1>
     <ul>
         {% for rating in ratings %}
             <p>{{ rating.rating }}/10 - {{ rating.comment }} by {{ rating.author.username }}</p>
         {% empty %}
-            <p>Šventė dar neturi įvertinimų.</p>
+            <p>The event has no ratings.</p>
         {% endfor %}
     </ul>
     
     {% if user.is_authenticated %}
-    <h3>Įrašyti įvertinimą:</h3>
+    <h3>Write a rating:</h3>
     <form method="post" action="{% url 'event_detail' event.id %}">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Įrašyti įvertinimą</button>
+        <button type="submit">Submit</button>
     </form>
     {% else %}
-    <p>Prisijunkite, kad galėtumėte įrašyti įvertinimą.</p>
+    <p>Log in to rate.</p>
     {% endif %}
     
-    <a href="{% url 'event_detail' event.id %}"><button style="button">Atgal į šventės informacijos puslapį</button></a>
+    <a href="{% url 'event_detail' event.id %}"><button style="button">Back</button></a>
 </body>
     {% endblock %}

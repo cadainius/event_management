@@ -3,26 +3,26 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Pradinis puslapis</title>
+    <title>Home page</title>
     <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
 </head>
 {% block content %}
 <body class="bBox">
-    <h1>Sveiki atvykę į mūsų svetainę!</h1>
+    <h1>Welcome to our event management website!</h1>
     
-    <p>Naršykite mūsų svetainėje ir atraskite daug įdomių dalykų!</p>
-
-    <a href="{% url 'event_list' %}"><button>Šventės sąrašas</button></a>
+    <p>Browse our website and discover many interesting things!</p>
+<div>
+    <a href="{% url 'event_list' %}"><button>Event list</button></a>
     
     {% if user.is_authenticated %}
-    <p>Sveiki, {{ user.username }}!</p>
-    <a href="{% url 'create_event' %}"><button>Sukurti naują šventę</button></a>
-    <a href="{% url 'logout' %}"><button>Atsijungti</button></a>
+    <p>Hello, {{ user.username }}!</p>
+    <a href="{% url 'create_event' %}"><button>Create new event</button></a>
+    <a href="{% url 'logout' %}"><button>Logout</button></a>
     {% else %}
-        <a href="{% url 'login' %}"><button>Prisijungti</button></a>
-        <a href="{% url 'register' %}"><button>Registruotis</button></a>
+        <a href="{% url 'login' %}"><button>Login</button></a>
+        <a href="{% url 'register' %}"><button>Registerate</button></a>
     {% endif %}
-
+<div>
 </body>
 {% endblock %}
 </html>

@@ -8,17 +8,19 @@
       }
 </style>
 <body class="bBox">
-    <h1>Dalyvių sąrašas:</h1>
+    <h1>Participant list:</h1>
     <ul>
         {% for participant in event.eventparticipant_set.all %}
             <li style="color:white; font-size:20px; margin-right:50px;">{{ participant.user.username }}</li>
         {% endfor %}
     </ul>
     {%if not event.eventparticipant_set.all%}
-    <p>Šventėje nėra dalyvių.</p>
+    <p>No participants added.</p>
     {%endif%}
 <div>
+    {%if event.creator == user%}
     <a href="{% url 'create_participant' event.id %}"><button type="button">Add</button></a>
+    {%endif%}
     <a href="{% url 'event_detail' event.id %}"><button type="button">Back</button></a>
 </div>
 </body>
