@@ -1,28 +1,63 @@
-{% extends "base.html" %}
-
+{% extends "home.html" %}
 {% block content %}
-    <h2>Create new event</h2>
+<style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+    
+    input[type=text], select{
+      width: 400px;
+      height: 40px;
+      margin-bottom: 20px;
+    }
+    
+
+ textarea {
+        min-width: 400px;
+        min-height: 100px;
+        margin-bottom: 20px;
+    }
+
+input[type=datetime-local]{
+        width: 400px;
+        height: 40px;
+        margin-bottom: 20px;
+    }
+    
+    input[type=submit]:hover {
+      background-color: #45a049;
+    }
+
+</style>
+<body class="bBox">
+    <h1>Create new event</h1>
     <form method="post" action="{% url 'create_event' %}" enctype="multipart/form-data">
         {% csrf_token %}
+        <div >
         <label for="name">Name:</label>
+        </div>
         <input type="text" id="name" name="name" required><br>
-
+        <div >
         <label for="date_and_time">Date and time:</label>
+        </div>
         <input type="datetime-local" id="date_and_time" name="date_and_time" required><br>
-
+        <div>
         <label for="location">Location:</label>
+        </div>
         <input type="text" id="location" name="location" required><br>
-
+        <div>
         <label for="description">Description:</label>
+        </div>
         <textarea id="description" name="description" required></textarea><br>
-
+        <div>
         <label for="is_public">Public:</label>
-        <input type="checkbox" id="is_public" name="is_public" checked><br>
-
+        </div>
+        <input style = "margin-bottom:20px" type="checkbox" id="is_public" name="is_public" checked><br>
+        <div>
         <label for="image">Image:</label>
-        <input type="file" id="image" name="image"><br>
-        
+        </div>
+        <input style = "width:100px; margin-top:10px; margin-bottom:30px;"type="file" id="image" name="image"><br>
+
         <button type="submit">Submit</button>
     </form>
-    <a href="{% url 'event_list' %}">Back to menu</a>
+    <a href="{% url 'event_list' %}"><button type="button">Home</button></a>
+</body>
 {% endblock %}

@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.models import User
 from django.contrib import messages
-from .models import Event, EventParticipant, EventRating
+from .models import Event, EventParticipant, EventRating, DisplayUserName
 from .forms import EventRatingForm, EventForm, EventParticipantForm
 from .forms import CustomUserCreationForm
 from .forms import CustomAuthenticationForm
@@ -37,7 +38,11 @@ def edit_event(request, event_id):
         event.date_and_time = request.POST.get('date_and_time')
         event.location = request.POST.get('location')
         event.description = request.POST.get('description')
-        event.is_public = request.POST.get('is_public')
+        checked = request.POST.get('is_public')
+        if checked is not None:
+            event.is_public = True
+        else:
+            event.is_public = False
         event.save()
 
         return redirect('event_list')
@@ -47,12 +52,8 @@ def edit_event(request, event_id):
 @login_required
 def delete_event(request, event_id):
     event = get_object_or_404(Event, pk=event_id)
-    
-    if request.method == 'POST':
-        event.delete()
-        return redirect('event_list')
-    
-    return render(request, 'delete_event.html', {'event': event})
+    event.delete()
+    return redirect('event_list')
 
 def event_detail(request, event_id):
     event = get_object_or_404(Event, pk=event_id)
@@ -64,10 +65,12 @@ def event_detail(request, event_id):
             rating = form.cleaned_data['rating']
             comment = form.cleaned_data['comment']
             author = request.user
-            
+            form.clean()
             event_rating = EventRating(rating=rating, comment=comment, event=event, author=author)
+
             event_rating.save()
-    
+            return redirect('event_detail', event_id=event_id)
+ 
     else:
         form = EventRatingForm()
     
@@ -82,6 +85,7 @@ def participant_list(request, event_id):
 @login_required
 def create_participant(request, event_id):
     event = Event.objects.get(pk=event_id)
+    users = User.objects.all()
 
     if request.method == 'POST':
         form = EventParticipantForm(request.POST)
@@ -97,8 +101,11 @@ def create_participant(request, event_id):
             return redirect('participant_list', event_id=event_id)
     else:
         form = EventParticipantForm()
+    return render(request, 'create_participant.html', {'event': event, 'user': users, 'form': form })
 
-    return render(request, 'create_participant.html', {'event': event, 'form': form})
+def showusername(request, event_id):
+    DisplayUserName=User.objects.all()
+    return render(request,'',{"displayusersname":DisplayUserName})
 
 @login_required
 def event_ratings(request, event_id):

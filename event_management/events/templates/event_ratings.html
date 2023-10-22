@@ -1,12 +1,31 @@
-{% extends "base.html" %}
+{% extends "home.html" %}
 
 {% block content %}
-    <h2>Įvertinimai šventei: {{ event.name }}</h2>
+<style>
+    label{
+        display:block;
+    }
+
+    input[type=number]{
+        width: 400px;
+        height: 40px;
+        margin-bottom: 20px;
+      }
+
+      textarea {
+        min-width: 400px;
+        min-height: 100px;
+        margin-bottom: 20px;
+    }
+
+</style>
+<body class="bBox">
+   <h1>Įvertinimai šventei: {{ event.name }}</h1>
     <ul>
         {% for rating in ratings %}
-            <li>{{ rating.rating }}/10 - {{ rating.comment }} by {{ rating.author.username }}</li>
+            <p>{{ rating.rating }}/10 - {{ rating.comment }} by {{ rating.author.username }}</p>
         {% empty %}
-            <li>Šventė dar neturi įvertinimų.</li>
+            <p>Šventė dar neturi įvertinimų.</p>
         {% endfor %}
     </ul>
     
@@ -21,5 +40,6 @@
     <p>Prisijunkite, kad galėtumėte įrašyti įvertinimą.</p>
     {% endif %}
     
-    <a href="{% url 'event_detail' event.id %}">Atgal į šventės informacijos puslapį</a>
-{% endblock %}
+    <a href="{% url 'event_detail' event.id %}"><button style="button">Atgal į šventės informacijos puslapį</button></a>
+</body>
+    {% endblock %}

@@ -1,26 +1,28 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Pradinis puslapis</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
 </head>
-<body>
+{% block content %}
+<body class="bBox">
     <h1>Sveiki atvykę į mūsų svetainę!</h1>
-    
-    <!-- Čia galite pridėti bet kokį turinį, kurį norite atvaizduoti pagrindiniame puslapyje -->
     
     <p>Naršykite mūsų svetainėje ir atraskite daug įdomių dalykų!</p>
 
-    <!-- Jei jums reikia pridėti nuorodas į kitus puslapius, galite tai padaryti taip: -->
-    <a href="{% url 'event_list' %}">Šventės sąrašas</a>
-    <a href="{% url 'create_event' %}">Sukurti naują šventę</a>
-
-    <!-- Jei norite parodyti papildomą turinį pagal prisijungusį vartotoją: -->
+    <a href="{% url 'event_list' %}"><button>Šventės sąrašas</button></a>
+    
     {% if user.is_authenticated %}
-        <p>Sveiki, {{ user.username }}!</p>
-        <a href="{% url 'logout' %}">Atsijungti</a>
+    <p>Sveiki, {{ user.username }}!</p>
+    <a href="{% url 'create_event' %}"><button>Sukurti naują šventę</button></a>
+    <a href="{% url 'logout' %}"><button>Atsijungti</button></a>
     {% else %}
-        <a href="{% url 'login' %}">Prisijungti</a>
-        <a href="{% url 'register' %}">Registruotis</a>
+        <a href="{% url 'login' %}"><button>Prisijungti</button></a>
+        <a href="{% url 'register' %}"><button>Registruotis</button></a>
     {% endif %}
+
 </body>
+{% endblock %}
 </html>

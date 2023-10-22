@@ -1,0 +1,35 @@
+h1, h2 {
+    margin: 1rem;
+    padding: 1rem;
+    }
+
+h1, h2 {
+    border-bottom: 2px solid #ffffff; 
+    box-shadow: 0 3px 5px #ffffff;
+    padding: 1rem;
+    padding: 0.25rem 0.5rem;
+    border-bottom: 1px solid #ccaa77;
+    }
+
+body {
+    background-color: rgb(63, 52, 39);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+} 
+
+
+h1, h2 {
+    color: rgb(255, 255, 255);
+}
+
+li {
+    color: rgb(255, 255, 255);
+}
+
+footer {
+    color: rgb(185, 215, 70);
+}
+a {
+    color: rgb(185, 215, 70);
+}

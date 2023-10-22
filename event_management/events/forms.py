@@ -21,8 +21,10 @@ class EventForm(forms.ModelForm):
         model = Event
         fields = ['name', 'date_and_time', 'location', 'description', 'is_public', 'image']
 
-class EventParticipantForm(forms.Form):
-    user = forms.ModelChoiceField(queryset=User.objects.all(), label='Pasirinkite dalyvį')
+class EventParticipantForm(forms.ModelForm):
+    class Meta:
+        model = EventParticipant
+        fields = ['user']
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:

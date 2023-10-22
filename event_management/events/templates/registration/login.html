@@ -1,7 +1,8 @@
-{% extends "base.html" %}
+{% extends "home.html" %}
 
 {% block content %}
-  <h2>Login</h2>
+<body class="bBox">
+  <h1>Login</h1>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
@@ -9,4 +10,5 @@
   </form>
   <p>Don't have an account yet? <a href="{% url 'register' %}">Register here</a>.</p>
 </div>
+</body>
 {% endblock %}

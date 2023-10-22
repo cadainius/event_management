@@ -8,9 +8,9 @@
 </head>
 <body>
     <header>
-        <h1>Events</h1>
+        <h1 style=" color:red">Events</h1>
         <nav>
-            <ul>
+
                 <li><a href="{% url 'home' %}">Home</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'create_event' %}">Create Event</a></li>
@@ -19,7 +19,7 @@
                     <li><a href="{% url 'login' %}">Login</a></li>
                     <li><a href="{% url 'register' %}">Register</a></li>
                 {% endif %}
-            </ul>
+
         </nav>
     </header>
     <main>

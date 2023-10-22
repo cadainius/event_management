@@ -1,17 +1,19 @@
-{% extends "base.html" %}
+{% extends "event_detail.html" %}
 
-{% block content %}
-    <h2>Pridėti dalyvius į šventę: {{ event.name }}</h2>
+{% block rating %}
+<body class="bBox">
+    <h3 style="font-size:30px; color:green">Pridėti dalyvius į šventę:</h3>
     <form method="post" action="{% url 'create_participant' event.id %}">
         {% csrf_token %}
-        <label for="user">Pasirinkite dalyvį:</label>
-        <select id="user" name="user">
+        <label style=""for="user">Pasirinkite dalyvį:</label>
+        <select id="user" name="user" style="margin-bottom:15px; width:130px; height:40px">
             <option value="" disabled selected>Pasirinkite dalyvį</option>
-            {% for user in users %}
+            {% for user in user%}
                 <option value="{{ user.id }}">{{ user.username }}</option>
             {% endfor %}
         </select><br>
         <button type="submit">Pridėti dalyvį</button>
     </form>
-    <a href="{% url 'event_detail' event.id %}">Atgal į šventės informacijos puslapį</a>
+    <a href="{% url 'event_detail' event.id %}"><button type="button">Atgal į šventės informacijos puslapį</button></a>
+</body>
 {% endblock %}

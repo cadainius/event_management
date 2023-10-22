@@ -1,25 +1,60 @@
-{% extends "base.html" %}
+{% extends "home.html" %}
 
 {% block content %}
-    <h2>Redaguoti šventę: {{ event.name }}</h2>
+<style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+    
+    input[type=text], select{
+      width: 400px;
+      height: 40px;
+      margin-bottom: 20px;
+    }
+    
+
+ textarea {
+        min-width: 400px;
+        min-height: 100px;
+        margin-bottom: 20px;
+    }
+
+input[type=datetime-local]{
+        width: 400px;
+        height: 40px;
+        margin-bottom: 20px;
+    }
+    
+    input[type=submit]:hover {
+      background-color: #45a049;
+    }
+
+</style>
+<body class="bBox">
+    <h1>Redaguoti šventę: {{ event.name }}</h1>
     <form method="post" action="{% url 'edit_event' event.id %}">
         {% csrf_token %}
+        <div>
         <label for="name">Pavadinimas:</label>
+        </div>
         <input type="text" id="name" name="name" value="{{ event.name }}" required><br>
-
+        <div>
         <label for="date_and_time">Data ir laikas:</label>
+        </div>
         <input type="datetime-local" id="date_and_time" name="date_and_time" value="{{ event.date_and_time|date:'Y-m-d\TH:i' }}" required><br>
-
+        <div>
         <label for="location">Vieta:</label>
+        </div>
         <input type="text" id="location" name="location" value="{{ event.location }}" required><br>
-
+        <div>
         <label for="description">Aprašymas:</label>
+        </div>
         <textarea id="description" name="description" required>{{ event.description }}</textarea><br>
-
+        <div>
         <label for="is_public">Viešas:</label>
-        <input type="checkbox" id="is_public" name="is_public" {% if event.is_public %}checked{% endif %}><br>
+        </div>
+        <input style = "margin-bottom:20px" type="checkbox" id="is_public" name="is_public" {% if event.is_public %}checked{% endif %}><br>
 
         <button type="submit">Atnaujinti šventę</button>
     </form>
-    <a href="{% url 'event_list' %}">Atgal į šventės sąrašą</a>
+    <a href="{% url 'event_list' %}"><button type="button">Atgal į šventės sąrašą</button></a>
+</body>
 {% endblock %}
