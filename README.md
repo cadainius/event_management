@@ -1,6 +1,6 @@
 # event_management projektas su jango frameworku
  galime kurti renginius, peržiurėti jų informaciją, redaguoti, rašyti įvertinimą, pridėti dalyvius į sąrašą.
- kaip pasileisti šį projektą ?
+ Kaip pasileisti šį projektą ?
  1. projekto dalyje spaudžiame ant event_management dešiniu pelės klavišu ir sukuriame naują failą pavadinimu local_settings.py
  2. jame įrašome SECRET_KEY='=(jūsų sugeneruotas slaptažodis)'
  3. atsidarome settings.py failą ir įvedame SECRET_KEY = local_settings.SECRET_KEY
