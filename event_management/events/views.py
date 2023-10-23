@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .models import Event, EventParticipant, EventRating, DisplayUserName
+from .models import Event, EventParticipant, EventRating
 from .forms import EventRatingForm, EventForm, EventParticipantForm
 from .forms import CustomUserCreationForm
 from .forms import CustomAuthenticationForm
@@ -102,10 +102,6 @@ def create_participant(request, event_id):
     else:
         form = EventParticipantForm()
     return render(request, 'create_participant.html', {'event': event, 'user': users, 'form': form })
-
-def showusername(request, event_id):
-    DisplayUserName=User.objects.all()
-    return render(request,'',{"displayusersname":DisplayUserName})
 
 @login_required
 def event_ratings(request, event_id):

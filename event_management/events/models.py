@@ -19,6 +19,3 @@ class EventRating(models.Model):
     comment = models.TextField()
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-
-class DisplayUserName(models.Model):
-    username=models.CharField(max_length=100)
